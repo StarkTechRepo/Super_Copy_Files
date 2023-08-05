@@ -1,6 +1,7 @@
 @echo off
 chcp 65001 > nul
 setlocal enabledelayedexpansion
+title - https://github.com/OtaconEvil
 
 REM Obtener la ruta del directorio actual
 set "dir=%~dp0"
