@@ -3,6 +3,16 @@ chcp 65001 > nul
 setlocal enabledelayedexpansion
 title - https://github.com/OtaconEvil
 
+REM Comprobar si se tienen privilegios de administrador
+fltmc >nul 2>&1 || (
+    echo Privilegios de administrador requeridos.
+    PowerShell Start -Verb RunAs "%0" 2>nul || (
+        echo Haz clic derecho en el script y selecciona "Ejecutar como administrador".
+        pause & exit 1
+    )
+    exit 0
+)
+
 REM Obtener la ruta del directorio actual
 set "dir=%~dp0"
 set "outputFile=%dir%lista_archivos.txt"
@@ -27,10 +37,10 @@ set /p opcion=Ingrese el número de opción deseada:
 REM Validar la opción ingresada por el usuario
 if %opcion%==1 (
     REM Opción 1 Copiar lista de nombres de archivos sin extensiones
-    (for %%F in (%dir%*) do (
-        set "filename=%%~nxF"
+    (for %%F in ("%dir%*") do (
+        set "filename=%%~nF"
         echo !filename!
-    )) > %outputFile%
+    )) > "%outputFile%"
     echo.
     echo Lista de nombres de archivos sin extensiones guardada en %outputFile%
     pause
@@ -70,3 +80,4 @@ if /i "%continuar%"=="s" goto menu
 echo.
 echo Saliendo...
 timeout 2 >nul
+
