@@ -1,17 +1,19 @@
 @echo off
-chcp 65001 > nul
 setlocal enabledelayedexpansion
-title - https://github.com/OtaconEvil
+chcp 65001 > nul
+color 30
+title https://github.com/OtaconEvil
 
-REM Comprobar si se tienen privilegios de administrador
-fltmc >nul 2>&1 || (
-    echo Privilegios de administrador requeridos.
-    PowerShell Start -Verb RunAs "%0" 2>nul || (
-        echo Haz clic derecho en el script y selecciona "Ejecutar como administrador".
-        pause & exit 1
-    )
-    exit 0
+REM Detectar si se ejecuta como administrador
+>nul 2>&1 "%SYSTEMROOT%\system32\cacls.exe" "%SYSTEMROOT%\system32\config\system"
+
+REM Si no se está ejecutando como administrador, reiniciar solicitando privilegios elevados
+if '%errorlevel%' NEQ '0' (
+    echo Por favor, ejecuta este archivo como administrador.
+    pause
+    exit /B
 )
+
 
 REM Obtener la ruta del directorio actual
 set "dir=%~dp0"
