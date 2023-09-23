@@ -1,7 +1,5 @@
 # Super Copy Files
 
-![Windows Image](path/to/your/image.png)
-
 ## Descripción
 'Super Copy Files' es un potente y versátil script en Batch que te permite obtener una lista de nombres de archivos de manera fácil y rápida. Con opciones para copiar los nombres con o sin extensiones, así como las rutas y subcarpetas con extensiones, este script te brinda el control total sobre la información que necesitas. La interfaz atractiva y amigable hace que la experiencia de uso sea sencilla y agradable. ¡Domina la copia de nombres de archivos con 'Super Copy Files' y lleva tu productividad al siguiente nivel!
 
